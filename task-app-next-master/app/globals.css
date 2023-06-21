@@ -8,11 +8,5 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1em;
-}
-
-.card-container {
-  display: block;
-  margin: auto;
-  margin-top: 3em;
+  gap:1em;
 }

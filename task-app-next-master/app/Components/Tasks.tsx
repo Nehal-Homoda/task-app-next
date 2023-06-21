@@ -1,7 +1,7 @@
 "use client";
 import React, { FormEventHandler, useState } from "react";
 import { ITask } from "../types/tasks";
-import { FiEdit, FiInfo, FiTrash2 } from "react-icons/fi";
+import { FiEdit, FiTrash2 } from "react-icons/fi";
 import Modal from "./Modal";
 import { useRouter } from "next/navigation";
 import { deleteTask, editTask } from "../API";
@@ -28,17 +28,13 @@ const Tasks: React.FC<TaskProps> = ({ task }) => {
     );
     setTaskToEdit("");
     setOpenModalEdit(false);
-    window.location.reload();
+    router.refresh();
   };
 
   const HandleDeletTask = async (id: string) => {
     await deleteTask(id, localStorage.getItem("token")!);
     setOpenModalDelete(false);
-    window.location.reload();
-  };
-
-  const openDetails = async () => {
-    window.location.href = window.location.origin + `/details?taskId=${task._id}`;
+    router.refresh();
   };
   return (
     <tr key={task._id}>
@@ -46,12 +42,6 @@ const Tasks: React.FC<TaskProps> = ({ task }) => {
       <td className="w-full">{task.status}</td>
       <td className="w-full">{task.timeSpent.toString()}</td>
       <td className="flex gap-5">
-        <FiInfo
-          onClick={() => openDetails()}
-          cursor="pointer"
-          className="text-blue-500"
-          size={25}
-        />
         <FiEdit
           onClick={() => setOpenModalEdit(true)}
           cursor="pointer"
@@ -84,7 +74,9 @@ const Tasks: React.FC<TaskProps> = ({ task }) => {
           size={25}
         />
         <Modal modalOpen={openModalDelete} setModalOpen={setOpenModalDelete}>
-          <h3 className="text-lg">Are you sure,Delete this task?</h3>
+          <h3 className="text-lg">
+            Are you sure,Delete this task?
+          </h3>
           <div className="modal-action">
             <button onClick={() => HandleDeletTask(task._id)} className="btn">
               Yes

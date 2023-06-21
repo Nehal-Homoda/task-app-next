@@ -21,21 +21,6 @@ export const getAllTasks = async (token: string): Promise<ITask[]> => {
   }
 };
 
-export const getTaskById = async (id: string, token: string): Promise<ITask> => {
-  try {
-    const res = await fetch(`${baseUrl}/Tasks/${id}`, {
-      next: { revalidate: 0 },
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    const task = await res.json();
-    return task;
-  } catch {
-    return null!;
-  }
-};
-
 export const addTask = async (task: ITask, token: string): Promise<void> => {
   const res = await fetch(`${baseUrl}/Tasks`, {
     method: "Post",
