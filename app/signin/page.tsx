@@ -3,7 +3,7 @@ import { FormEventHandler, useState } from "react";
 import { login } from "../API";
 import { useRouter } from "next/navigation";
 
-const signin = () => {
+const Signin = () => {
   const router = useRouter();
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
@@ -41,10 +41,10 @@ const signin = () => {
           placeholder="Type here"
           className="input input-bordered input-warning w-full max-w-xs"
         />
-        <a href="/signup">Don't have an account</a>
+        <a href="/signup">Dont have an account</a>
       </form>
     </div>
   );
 };
 
-export default signin;
+export default Signin;

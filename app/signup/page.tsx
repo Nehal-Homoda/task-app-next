@@ -3,7 +3,7 @@ import { FormEventHandler, useState } from "react";
 import { login, register } from "../API";
 import { useRouter } from "next/navigation";
 
-const signin = () => {
+const Signup = () => {
   const router = useRouter();
   const [userName, setUserName] = useState("");
   const [name, setName] = useState("");
@@ -63,4 +63,4 @@ const signin = () => {
   );
 };
 
-export default signin;
+export default Signup;

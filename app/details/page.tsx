@@ -15,14 +15,14 @@ const Details = () => {
   let [timer, setTimer] = useState<number>(0);
   let [startDisabled, setStartDisabled] = useState<boolean>(false);
   let [stopDisabled, setStopDisabled] = useState<boolean>(true);
-  const urlParams = new URLSearchParams(window.location.search);
-  const taskId = urlParams.get("taskId");
+  let taskId = "";
+  if (typeof window !== "undefined") {
+    const urlParams = new URLSearchParams(window.location.search);
+    taskId = urlParams.get("taskId")!;
+  }
 
   const fillTask = async () => {
-    var fetchedTask = await getTaskById(
-      taskId!,
-      localStorage.getItem("token")!
-    );
+    var fetchedTask = await getTaskById(taskId, localStorage.getItem("token")!);
 
     setTask(fetchedTask);
   };

@@ -6,7 +6,7 @@ import TaskList from "./TaskList";
 import { ITask } from "../types/tasks";
 
 export default function Core() {
-  if (!localStorage.getItem("token")) {
+  if (typeof window !== "undefined" && !localStorage.getItem("token")) {
     window.location.href = "/signin";
   }
   const [tasks, setTasks] = useState<ITask[]>([]);
